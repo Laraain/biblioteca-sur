@@ -2,6 +2,8 @@
 
 App web para que los socios de una biblioteca popular (cliente ficticio) busquen libros, los reserven y gestionen sus préstamos.
 
+**Publicada en:** https://jolly-dango-09b3ee.netlify.app/
+
 - HTML, CSS y JavaScript puro. Sin backend: datos simulados en `data.js` y estado guardado en `localStorage`.
 - Login simulado – usuario de prueba: `sofia@bibliotecasur.org` / `sur2026` (también `martin@bibliotecasur.org` / `libros123`).
 
