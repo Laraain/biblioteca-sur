@@ -7,81 +7,133 @@
   <meta name="description" content="Catálogo y préstamos online de la Biblioteca Popular Sur.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+  <!-- Ícono reutilizable del logo -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icono-logo" viewBox="0 0 32 32">
+      <path d="M5 7.5c3.6-1.4 7.3-1.2 11 .8v17c-3.7-2-7.4-2.2-11-.8z" fill="currentColor" opacity=".35"/>
+      <path d="M27 7.5c-3.6-1.4-7.3-1.2-11 .8v17c3.7-2 7.4-2.2 11-.8z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
   <!-- PANTALLA 1: LOGIN -->
   <section id="pantalla-login" class="login" hidden>
     <div class="login-card">
-      <div class="marca">
-        <span class="marca-icono" aria-hidden="true">📚</span>
+      <div class="login-arte">
+        <div class="logo logo-claro">
+          <svg class="logo-icono"><use href="#icono-logo"/></svg>
+          <span>Biblioteca <em>Sur</em></span>
+        </div>
         <div>
-          <h1>Biblioteca Popular Sur</h1>
-          <p class="sub">Préstamos online para socios</p>
+          <p class="login-frase">Tu biblioteca de barrio, ahora también en el bolsillo.</p>
+          <div id="login-estante" class="login-estante" aria-hidden="true"></div>
         </div>
       </div>
 
-      <form id="form-login" novalidate>
-        <label for="email">Email</label>
-        <input id="email" type="email" autocomplete="username" placeholder="tu@email.com" required>
+      <div class="login-form">
+        <p class="sobretitulo">Biblioteca Popular Sur</p>
+        <h1>Hola de nuevo</h1>
+        <p class="sub">Ingresá para ver el catálogo y tus préstamos.</p>
 
-        <label for="password">Contraseña</label>
-        <input id="password" type="password" autocomplete="current-password" placeholder="••••••" required>
+        <form id="form-login" novalidate>
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="username" placeholder="tu@email.com" required>
 
-        <p id="error-login" class="error" role="alert"></p>
-        <button type="submit" class="btn btn-primario btn-ancho">Ingresar</button>
-      </form>
+          <label for="password">Contraseña</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="••••••" required>
 
-      <div class="demo">
-        <strong>Usuario de prueba</strong>
-        <p>sofia@bibliotecasur.org · sur2026</p>
-        <button type="button" id="btn-demo" class="btn-link">Completar automáticamente</button>
+          <p id="error-login" class="error" role="alert"></p>
+          <button type="submit" class="btn btn-primario btn-ancho">Ingresar</button>
+        </form>
+
+        <div class="demo">
+          <div>
+            <strong>Usuario de prueba</strong>
+            <p>sofia@bibliotecasur.org · sur2026</p>
+          </div>
+          <button type="button" id="btn-demo" class="btn-link">Completar</button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- PANTALLA 2: APP -->
-  <div id="pantalla-app" hidden>
-    <header class="topbar">
-      <div class="marca marca-chica">
-        <span class="marca-icono" aria-hidden="true">📚</span>
-        <span class="marca-nombre">Biblioteca Sur</span>
-      </div>
-      <div class="usuario">
-        <span>Hola, <strong id="nombre-usuario"></strong></span>
-        <button id="btn-salir" class="btn btn-secundario">Salir</button>
-      </div>
-    </header>
+  <div id="pantalla-app" class="app" data-vista="catalogo" hidden>
 
-    <main class="contenido">
-      <!-- Catálogo -->
-      <section class="catalogo" aria-labelledby="titulo-catalogo">
-        <h2 id="titulo-catalogo">Catálogo</h2>
+    <!-- Barra lateral: logo, géneros y usuario -->
+    <aside class="sidebar">
+      <div class="logo">
+        <svg class="logo-icono"><use href="#icono-logo"/></svg>
+        <span>Biblioteca <em>Sur</em></span>
+      </div>
 
-        <div class="filtros">
-          <input id="buscador" type="search" placeholder="Buscar por título o autor…" aria-label="Buscar por título o autor">
-          <select id="filtro-genero" aria-label="Filtrar por género">
-            <option value="todos">Todos los géneros</option>
-          </select>
-          <label class="check">
-            <input type="checkbox" id="solo-disponibles"> Solo disponibles
-          </label>
+      <p class="sidebar-titulo">Géneros</p>
+      <nav id="nav-generos" class="nav-generos" aria-label="Filtrar por género"></nav>
+
+      <div class="sidebar-usuario">
+        <span id="avatar" class="avatar" aria-hidden="true"></span>
+        <div class="sidebar-usuario-texto">
+          <strong id="nombre-usuario"></strong>
+          <span>Socia/o</span>
         </div>
+        <button id="btn-salir" class="btn-icono" title="Cerrar sesión" aria-label="Cerrar sesión">
+          <svg viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </aside>
 
+    <!-- Catálogo -->
+    <main class="principal">
+      <header class="barra">
+        <label class="busqueda">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <input id="buscador" type="search" placeholder="Buscar por título o autor…" aria-label="Buscar por título o autor">
+        </label>
+        <div class="segmentado" role="group" aria-label="Disponibilidad">
+          <button type="button" class="activo" data-disponibilidad="todos" aria-pressed="true">Todos</button>
+          <button type="button" data-disponibilidad="disponibles" aria-pressed="false">Disponibles</button>
+        </div>
+      </header>
+
+      <div class="encabezado">
+        <h1 id="saludo"></h1>
         <p id="contador-resultados" class="contador"></p>
-        <ul id="lista-libros" class="lista-libros"></ul>
-      </section>
+      </div>
 
-      <!-- Mis préstamos -->
-      <aside class="prestamos" aria-labelledby="titulo-prestamos">
-        <h2 id="titulo-prestamos">Mis préstamos <span id="cupo" class="cupo"></span></h2>
-        <ul id="lista-prestamos" class="lista-prestamos"></ul>
-        <p class="regla">Hasta 3 libros a la vez · 14 días · 1 renovación de 7 días.</p>
-      </aside>
+      <div id="estantes" class="estantes"></div>
     </main>
+
+    <!-- Mis préstamos -->
+    <aside class="panel-prestamos" aria-labelledby="titulo-prestamos">
+      <div class="panel-cabecera">
+        <h2 id="titulo-prestamos">Mis préstamos</h2>
+        <div id="cupo" class="cupo"></div>
+      </div>
+      <ul id="lista-prestamos" class="lista-prestamos"></ul>
+      <p class="regla">Hasta 3 libros a la vez · 14 días · 1 renovación de 7 días.</p>
+    </aside>
+
+    <!-- Navegación inferior (solo celular) -->
+    <nav class="tabbar" aria-label="Secciones">
+      <button type="button" data-ir="catalogo" class="activo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h4v14H4zM10 5h4v14h-4zM16.5 5.5l3.5 1-3.5 13-3.5-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        Catálogo
+      </button>
+      <button type="button" data-ir="prestamos">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        Mis préstamos <span id="tab-contador" class="tab-contador"></span>
+      </button>
+    </nav>
   </div>
+
+  <!-- Ficha del libro -->
+  <dialog id="detalle" class="detalle" aria-labelledby="detalle-titulo">
+    <div id="detalle-contenido"></div>
+  </dialog>
 
   <!-- Aviso flotante -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
