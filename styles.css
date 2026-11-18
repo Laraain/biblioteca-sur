@@ -695,6 +695,7 @@ body:has(.detalle[open]) { overflow: hidden; }
     border-radius: 0;
     box-shadow: none;
     padding-bottom: 80px;
+    background: var(--crema);
   }
   .sidebar {
     flex-direction: row;
