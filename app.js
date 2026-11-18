@@ -186,18 +186,6 @@ function persistir() {
   render();
 }
 
-// ---------- Tapas dibujadas con CSS ----------
-// Los colores salen siempre de LIBROS_INICIALES (aunque el estado guardado sea viejo).
-function portadaHTML(libro, extraClase = "") {
-  const original = LIBROS_INICIALES.find((l) => l.id === libro.id);
-  const [fondo, tinta, adorno] = original.portada;
-  return `
-    <div class="portada portada--${adorno} ${extraClase}" style="--fondo:${fondo};--tinta:${tinta}">
-      <span class="portada-titulo">${libro.titulo}</span>
-      <span class="portada-autor">${libro.autor}</span>
-    </div>`;
-}
-
 // Estado de un libro visto por el usuario actual
 function estadoDe(libro) {
   if (!libro.prestadoA) return { clase: "disponible", texto: "Disponible" };
@@ -431,7 +419,8 @@ function mostrarPantalla() {
     render();
   } else {
     if (detalle.open) cerrarDetalle();
-    $("email").focus();
+    // En celular no enfocamos el email: abriría el teclado y taparía la pantalla.
+    if (window.matchMedia("(pointer: fine)").matches) $("email").focus();
   }
 }
 

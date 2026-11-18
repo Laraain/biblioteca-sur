@@ -57,6 +57,9 @@ button { font: inherit; color: inherit; }
   display: flex;
   align-items: center;
   gap: .6rem;
+  color: var(--tinta);
+  text-decoration: none;
+  width: fit-content;
   font-family: var(--serif);
   font-size: 1.2rem;
   font-weight: 600;
@@ -69,6 +72,10 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Botones ---------- */
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   font-weight: 600;
   font-size: .9rem;
   border-radius: 999px;
@@ -264,6 +271,16 @@ button { font: inherit; color: inherit; }
   flex-direction: column;
   justify-content: center;
 }
+.volver {
+  align-self: flex-start;
+  margin-bottom: 28px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  text-decoration: none;
+}
+.volver:hover { color: var(--acento); }
+
 .sobretitulo {
   font-size: .75rem;
   font-weight: 700;
@@ -597,6 +614,8 @@ input[type="email"]:focus, input[type="password"]:focus {
   box-shadow: 0 40px 100px -30px rgba(30, 20, 10, .6);
 }
 .detalle::backdrop { background: rgba(36, 28, 22, .45); backdrop-filter: blur(4px); }
+/* Con la ficha abierta, el fondo no se desplaza */
+body:has(.detalle[open]) { overflow: hidden; }
 .detalle-hero {
   position: relative;
   display: flex;
@@ -652,6 +671,11 @@ input[type="email"]:focus, input[type="password"]:focus {
 }
 .toast.visible { opacity: 1; transform: translate(-50%, 0); }
 .toast-error { background: var(--rojo); }
+
+/* Respeta a quien pidió menos animaciones en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
 
 /* ============================================================
    RESPONSIVE

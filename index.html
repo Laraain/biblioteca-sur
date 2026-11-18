@@ -3,16 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Biblioteca Popular Sur · Préstamos</title>
-  <meta name="description" content="Catálogo y préstamos online de la Biblioteca Popular Sur.">
+  <title>Biblioteca Popular Sur · Reservá libros desde el celular</title>
+  <meta name="description" content="Mirá qué libros hay en la Biblioteca Popular Sur, reservalos desde el celular y enterate antes de que venza tu préstamo.">
+  <meta name="theme-color" content="#f5efe6">
+  <meta property="og:title" content="Biblioteca Popular Sur">
+  <meta property="og:description" content="Los libros del barrio, a un toque: catálogo, reservas y avisos de devolución.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="landing.css">
 </head>
-<body>
+<body class="landing">
 
-  <!-- Ícono reutilizable del logo -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="icono-logo" viewBox="0 0 32 32">
       <path d="M5 7.5c3.6-1.4 7.3-1.2 11 .8v17c-3.7-2-7.4-2.2-11-.8z" fill="currentColor" opacity=".35"/>
@@ -20,125 +25,197 @@
     </symbol>
   </svg>
 
-  <!-- PANTALLA 1: LOGIN -->
-  <section id="pantalla-login" class="login" hidden>
-    <div class="login-card">
-      <div class="login-arte">
-        <div class="logo logo-claro">
-          <svg class="logo-icono"><use href="#icono-logo"/></svg>
-          <span>Biblioteca <em>Sur</em></span>
-        </div>
-        <div>
-          <p class="login-frase">Tu biblioteca de barrio, ahora también en el bolsillo.</p>
-          <div id="login-estante" class="login-estante" aria-hidden="true"></div>
-        </div>
-      </div>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-      <div class="login-form">
-        <p class="sobretitulo">Biblioteca Popular Sur</p>
-        <h1>Hola de nuevo</h1>
-        <p class="sub">Ingresá para ver el catálogo y tus préstamos.</p>
-
-        <form id="form-login" novalidate>
-          <label for="email">Email</label>
-          <input id="email" type="email" autocomplete="username" placeholder="tu@email.com" required>
-
-          <label for="password">Contraseña</label>
-          <input id="password" type="password" autocomplete="current-password" placeholder="••••••" required>
-
-          <p id="error-login" class="error" role="alert"></p>
-          <button type="submit" class="btn btn-primario btn-ancho">Ingresar</button>
-        </form>
-
-        <div class="demo">
-          <div>
-            <strong>Usuario de prueba</strong>
-            <p>sofia@bibliotecasur.org · sur2026</p>
-          </div>
-          <button type="button" id="btn-demo" class="btn-link">Completar</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PANTALLA 2: APP -->
-  <div id="pantalla-app" class="app" data-vista="catalogo" hidden>
-
-    <!-- Barra lateral: logo, géneros y usuario -->
-    <aside class="sidebar">
-      <div class="logo">
-        <svg class="logo-icono"><use href="#icono-logo"/></svg>
+  <!-- Navegación -->
+  <header id="l-nav" class="l-nav">
+    <div class="l-contenedor l-nav-interior">
+      <a class="logo" href="#inicio">
+        <svg class="logo-icono" aria-hidden="true"><use href="#icono-logo"/></svg>
         <span>Biblioteca <em>Sur</em></span>
-      </div>
+      </a>
+      <nav class="l-links" aria-label="Secciones">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <a class="btn btn-primario" href="app.html" data-cta-corto>Ingresar</a>
+    </div>
+  </header>
 
-      <p class="sidebar-titulo">Géneros</p>
-      <nav id="nav-generos" class="nav-generos" aria-label="Filtrar por género"></nav>
+  <main id="contenido">
 
-      <div class="sidebar-usuario">
-        <span id="avatar" class="avatar" aria-hidden="true"></span>
-        <div class="sidebar-usuario-texto">
-          <strong id="nombre-usuario"></strong>
-          <span>Socia/o</span>
+    <!-- Hero -->
+    <section id="inicio" class="l-hero">
+      <div class="l-contenedor l-hero-grilla">
+        <div class="l-hero-texto">
+          <p class="sobretitulo">Biblioteca Popular Sur</p>
+          <h1>Los libros del barrio, <em>a un toque</em>.</h1>
+          <p class="l-lead">Mirá qué hay en los estantes, reservá desde el celular y enterate antes de que se venza tu préstamo. Sin llamar y sin viajes en vano.</p>
+          <div class="l-ctas">
+            <a class="btn btn-primario btn-grande" href="app.html" data-cta>Ingresar como socia/o</a>
+            <a class="btn btn-secundario btn-grande" href="#como-funciona">Ver cómo funciona</a>
+          </div>
+          <ul class="l-datos">
+            <li><strong id="dato-libros">14</strong><span>libros en el catálogo</span></li>
+            <li><strong id="dato-cupo">3</strong><span>libros a la vez</span></li>
+            <li><strong id="dato-dias">14 + 7</strong><span>días de préstamo y renovación</span></li>
+          </ul>
         </div>
-        <button id="btn-salir" class="btn-icono" title="Cerrar sesión" aria-label="Cerrar sesión">
-          <svg viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </aside>
 
-    <!-- Catálogo -->
-    <main class="principal">
-      <header class="barra">
-        <label class="busqueda">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <input id="buscador" type="search" placeholder="Buscar por título o autor…" aria-label="Buscar por título o autor">
-        </label>
-        <div class="segmentado" role="group" aria-label="Disponibilidad">
-          <button type="button" class="activo" data-disponibilidad="todos" aria-pressed="true">Todos</button>
-          <button type="button" data-disponibilidad="disponibles" aria-pressed="false">Disponibles</button>
+        <!-- Composición: estante + tarjeta de préstamo + aviso -->
+        <div class="l-hero-arte" aria-hidden="true">
+          <div class="l-mueble">
+            <div id="hero-estante" class="l-estante"></div>
+          </div>
+          <div class="l-flotante l-tarjeta-prestamo">
+            <div id="hero-mini" class="l-mini"></div>
+            <div>
+              <p class="l-flotante-titulo">Rayuela</p>
+              <p class="l-flotante-sub">Devolver el <strong id="hero-fecha"></strong></p>
+              <div class="progreso"><span style="width:86%"></span></div>
+              <p class="l-flotante-alerta">Quedan 2 días</p>
+            </div>
+          </div>
+          <div class="l-flotante l-aviso">
+            <span class="l-aviso-check">✓</span> Reservaste “El Aleph”
+          </div>
         </div>
-      </header>
-
-      <div class="encabezado">
-        <h1 id="saludo"></h1>
-        <p id="contador-resultados" class="contador"></p>
       </div>
+    </section>
 
-      <div id="estantes" class="estantes"></div>
-    </main>
-
-    <!-- Mis préstamos -->
-    <aside class="panel-prestamos" aria-labelledby="titulo-prestamos">
-      <div class="panel-cabecera">
-        <h2 id="titulo-prestamos">Mis préstamos</h2>
-        <div id="cupo" class="cupo"></div>
+    <!-- Antes / ahora -->
+    <section id="problema" class="l-problema">
+      <div class="l-contenedor">
+        <div class="l-titulo-seccion claro">
+          <p class="sobretitulo">Por qué existe</p>
+          <h2>Del cuaderno al bolsillo.</h2>
+        </div>
+        <div class="l-comparacion">
+          <article class="l-columna l-antes revelar">
+            <p class="l-etiqueta">Antes</p>
+            <h3>Todo estaba en un cuaderno.</h3>
+            <ul>
+              <li>Para saber si un libro estaba, había que ir o preguntar por mensaje.</li>
+              <li>La fecha de devolución quedaba en una hoja que el socio no veía.</li>
+              <li>Los libros tardaban en volver y las consultas se acumulaban.</li>
+            </ul>
+          </article>
+          <article class="l-columna l-ahora revelar">
+            <p class="l-etiqueta">Ahora</p>
+            <h3>Todo está en tu celular.</h3>
+            <ul>
+              <li>Ves qué libros están disponibles y cuándo vuelven los prestados.</li>
+              <li>Reservás con un toque y sabés la fecha exacta de devolución.</li>
+              <li>La app te avisa en ámbar cuando faltan 3 días y en rojo si te pasaste.</li>
+            </ul>
+          </article>
+        </div>
       </div>
-      <ul id="lista-prestamos" class="lista-prestamos"></ul>
-      <p class="regla">Hasta 3 libros a la vez · 14 días · 1 renovación de 7 días.</p>
-    </aside>
+    </section>
 
-    <!-- Navegación inferior (solo celular) -->
-    <nav class="tabbar" aria-label="Secciones">
-      <button type="button" data-ir="catalogo" class="activo">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h4v14H4zM10 5h4v14h-4zM16.5 5.5l3.5 1-3.5 13-3.5-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-        Catálogo
-      </button>
-      <button type="button" data-ir="prestamos">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-        Mis préstamos <span id="tab-contador" class="tab-contador"></span>
-      </button>
-    </nav>
-  </div>
+    <!-- Cómo funciona -->
+    <section id="como-funciona" class="l-seccion">
+      <div class="l-contenedor">
+        <div class="l-titulo-seccion">
+          <p class="sobretitulo">Cómo funciona</p>
+          <h2>Tres pasos, ningún cuaderno.</h2>
+        </div>
+        <ol class="l-pasos">
+          <li class="l-paso revelar">
+            <span class="l-paso-numero">01</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <h3>Buscá</h3>
+            <p>Por título o autor, aunque no pongas tildes. Filtrá por género o mirá solo lo disponible.</p>
+          </li>
+          <li class="l-paso revelar">
+            <span class="l-paso-numero">02</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <h3>Reservá</h3>
+            <p>Hasta <span data-regla="max">3</span> libros a la vez, por <span data-regla="dias">14</span> días. La app te avisa si llegaste al tope.</p>
+          </li>
+          <li class="l-paso revelar">
+            <span class="l-paso-numero">03</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <h3>Devolvé a tiempo</h3>
+            <p>Mirá cuántos días te quedan, renová una vez por <span data-regla="renov">7</span> días más y marcá la devolución.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-  <!-- Ficha del libro -->
-  <dialog id="detalle" class="detalle" aria-labelledby="detalle-titulo">
-    <div id="detalle-contenido"></div>
-  </dialog>
+    <!-- Vista previa del catálogo -->
+    <section id="catalogo" class="l-seccion l-seccion-crema">
+      <div class="l-contenedor">
+        <div class="l-titulo-seccion l-titulo-fila">
+          <div>
+            <p class="sobretitulo">En los estantes</p>
+            <h2>Hoy hay <span id="dato-disponibles">11</span> libros esperándote.</h2>
+          </div>
+          <a class="btn btn-secundario" href="app.html" data-cta-catalogo>Entrá para reservar →</a>
+        </div>
+        <ul id="l-catalogo" class="estante-fila l-catalogo"></ul>
+      </div>
+    </section>
 
-  <!-- Aviso flotante -->
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <!-- Preguntas frecuentes -->
+    <section id="preguntas" class="l-seccion">
+      <div class="l-contenedor l-faq-grilla">
+        <div class="l-titulo-seccion">
+          <p class="sobretitulo">Preguntas frecuentes</p>
+          <h2>Lo que más nos preguntan en el mostrador.</h2>
+        </div>
+        <div class="l-faq">
+          <details>
+            <summary>¿Quién puede usar la app?</summary>
+            <p>Cualquier socia o socio de la biblioteca. Entrás con el email y la contraseña que te dan en el mostrador.</p>
+          </details>
+          <details>
+            <summary>¿Cuántos libros puedo llevar y por cuánto tiempo?</summary>
+            <p>Hasta <span data-regla="max">3</span> libros a la vez, por <span data-regla="dias">14</span> días cada uno.</p>
+          </details>
+          <details>
+            <summary>¿Puedo renovar un préstamo?</summary>
+            <p>Sí, una sola vez por libro, y te suma <span data-regla="renov">7</span> días. Después el botón se desactiva.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa si me atraso?</summary>
+            <p>No hay multas. La app marca el préstamo en rojo para recordarte que lo devuelvas y que otro socio pueda leerlo.</p>
+          </details>
+          <details>
+            <summary>¿Dónde retiro el libro que reservé?</summary>
+            <p>En el mostrador de la biblioteca, en el horario de atención. La reserva te lo guarda a tu nombre.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Llamado final -->
+    <section class="l-final">
+      <div class="l-contenedor">
+        <div class="l-final-tarjeta revelar">
+          <div>
+            <h2>Tu próximo libro ya está en el estante.</h2>
+            <p>¿Querés probarla? Usá <strong>sofia@bibliotecasur.org</strong> · <strong>sur2026</strong></p>
+          </div>
+          <a class="btn btn-claro btn-grande" href="app.html" data-cta>Ingresar como socia/o</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="l-footer">
+    <div class="l-contenedor l-footer-interior">
+      <a class="logo" href="#inicio">
+        <svg class="logo-icono" aria-hidden="true"><use href="#icono-logo"/></svg>
+        <span>Biblioteca <em>Sur</em></span>
+      </a>
+      <p>Cliente ficticio creado para el Ejercicio Obligatorio 2 de Media Pila. Datos simulados, sin backend.</p>
+    </div>
+  </footer>
 
   <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="tapas.js"></script>
+  <script src="landing.js"></script>
 </body>
 </html>
