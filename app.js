@@ -29,6 +29,15 @@ let libros = leer(CLAVE_LIBROS, structuredClone(LIBROS_INICIALES));
 let renovados = leer(CLAVE_RENOVADOS, []); // ids de libros que ya se renovaron
 let usuarioActual = null;
 
+// Los libros que tiene "otro" socio vuelven siempre unos días después de hoy,
+// así el catálogo nunca muestra una fecha de devolución que ya pasó.
+for (const libro of libros) {
+  const original = LIBROS_INICIALES.find((l) => l.id === libro.id);
+  if (libro.prestadoA === "otro" && original && original.vuelveEnDias) {
+    libro.devolucion = sumarDias(hoyISO(), original.vuelveEnDias);
+  }
+}
+
 // ---------- Utilidades de fechas ----------
 // Fecha local en formato AAAA-MM-DD (sin usar UTC, para no "saltar" de día de noche).
 function aISO(fecha) {
@@ -246,10 +255,10 @@ function renderPrestamos() {
 
   for (const libro of mios) {
     const dias = diasRestantes(libro.devolucion);
-    let aviso = `Quedan ${dias} días`;
+    let aviso = dias === 1 ? "Queda 1 día" : `Quedan ${dias} días`;
     let clase = "";
-    if (dias < 0) { aviso = `Vencido hace ${-dias} días`; clase = "vencido"; }
-    else if (dias <= 3) { aviso = dias === 0 ? "Vence hoy" : `Quedan ${dias} días`; clase = "pronto"; }
+    if (dias < 0) { aviso = dias === -1 ? "Vencido hace 1 día" : `Vencido hace ${-dias} días`; clase = "vencido"; }
+    else if (dias <= 3) { aviso = dias === 0 ? "Vence hoy" : aviso; clase = "pronto"; }
 
     const yaRenovado = renovados.includes(libro.id);
     const item = document.createElement("li");

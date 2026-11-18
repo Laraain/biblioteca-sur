@@ -8,16 +8,17 @@ const USUARIOS = [
 
 // Catálogo inicial. "prestadoA" indica qué socio lo tiene (null = disponible).
 // "otro" representa a un socio que no usa la app, para que haya libros ya prestados.
+// "vuelveEnDias": cuántos días después de hoy vuelve (así la demo nunca muestra fechas pasadas).
 const LIBROS_INICIALES = [
   { id: 1, titulo: "Rayuela", autor: "Julio Cortázar", genero: "Novela", anio: 1963, prestadoA: null },
-  { id: 2, titulo: "Ficciones", autor: "Jorge Luis Borges", genero: "Cuento", anio: 1944, prestadoA: "otro", devolucion: "2026-11-25" },
+  { id: 2, titulo: "Ficciones", autor: "Jorge Luis Borges", genero: "Cuento", anio: 1944, prestadoA: "otro", vuelveEnDias: 8 },
   { id: 3, titulo: "El túnel", autor: "Ernesto Sabato", genero: "Novela", anio: 1948, prestadoA: null },
   { id: 4, titulo: "Las aventuras de la China Iron", autor: "Gabriela Cabezón Cámara", genero: "Novela", anio: 2017, prestadoA: null },
-  { id: 5, titulo: "Nuestra parte de noche", autor: "Mariana Enriquez", genero: "Terror", anio: 2019, prestadoA: "otro", devolucion: "2026-11-30" },
+  { id: 5, titulo: "Nuestra parte de noche", autor: "Mariana Enriquez", genero: "Terror", anio: 2019, prestadoA: "otro", vuelveEnDias: 13 },
   { id: 6, titulo: "Los peligros de fumar en la cama", autor: "Mariana Enriquez", genero: "Terror", anio: 2009, prestadoA: null },
   { id: 7, titulo: "Cuentos de la selva", autor: "Horacio Quiroga", genero: "Infantil", anio: 1918, prestadoA: null },
   { id: 8, titulo: "Martín Fierro", autor: "José Hernández", genero: "Poesía", anio: 1872, prestadoA: null },
-  { id: 9, titulo: "Veinte poemas de amor", autor: "Pablo Neruda", genero: "Poesía", anio: 1924, prestadoA: "otro", devolucion: "2026-11-21" },
+  { id: 9, titulo: "Veinte poemas de amor", autor: "Pablo Neruda", genero: "Poesía", anio: 1924, prestadoA: "otro", vuelveEnDias: 4 },
   { id: 10, titulo: "Breve historia de la Argentina", autor: "José Luis Romero", genero: "Historia", anio: 1965, prestadoA: null },
   { id: 11, titulo: "Operación Masacre", autor: "Rodolfo Walsh", genero: "Historia", anio: 1957, prestadoA: null },
   { id: 12, titulo: "El Principito", autor: "Antoine de Saint-Exupéry", genero: "Infantil", anio: 1943, prestadoA: null },
